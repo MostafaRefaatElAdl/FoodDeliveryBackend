@@ -6,7 +6,7 @@ CREATE TABLE Client (
     ClientId int NOT NULL IDENTITY(10,10) primary key,
     ClientName nvarchar(50) NOT NULL,
     ClientPhone nvarchar(15) NOT NULL,
-	ClientEmail nvarchar(70),
+	ClientEmail nvarchar(70) ,
 	ClientAddress nvarchar(300) NOT NULL,
 );
 go
