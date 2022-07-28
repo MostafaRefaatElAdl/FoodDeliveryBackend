@@ -49,6 +49,24 @@ namespace RestaurantDeliveryBackend.Controllers
             return client;
         }
 
+        // GET: api/Clients/5
+        [HttpGet("phone/{num}")]
+        public async Task<ActionResult<Client>> GetClientByPhone(string num)
+        {
+            if (_context.Clients == null)
+            {
+                return NotFound();
+            }
+            var client = await _context.Clients.FirstOrDefaultAsync(x=>x.ClientPhone == num);
+
+            if (client == null)
+            {
+                return NotFound();
+            }
+
+            return client;
+        }
+
         // PUT: api/Clients/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutClient(int id, Client client)
@@ -83,10 +101,15 @@ namespace RestaurantDeliveryBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<Client>> PostClient(Client client)
         {
+            
           if (_context.Clients == null)
           {
               return Problem("Entity set 'RestaurantDeliveryContext.Clients'  is null.");
           }
+            if (_context.Clients.FirstOrDefault(x => x.ClientPhone == client.ClientPhone) != null)
+            {
+                return Problem("User Already There (Phone Duplicate)");
+            }
             _context.Clients.Add(client);
             await _context.SaveChangesAsync();
 

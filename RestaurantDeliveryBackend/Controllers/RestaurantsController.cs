@@ -39,7 +39,7 @@ namespace RestaurantDeliveryBackend.Controllers
           {
               return NotFound();
           }
-            var restaurant =  _context.Restaurants.Include(x=>x.Meals).FirstOrDefault(x=>x.RestId==id);
+            var restaurant = await  _context.Restaurants.Include(x=>x.Meals).FirstOrDefaultAsync(x=>x.RestId==id);
 
             if (restaurant == null)
             {
