@@ -87,6 +87,10 @@ namespace RestaurantDeliveryBackend.Controllers
           {
               return Problem("Entity set 'RestaurantDeliveryContext.OrderItems'  is null.");
           }
+            if (orderItem.Quantity < 1)
+            {
+                return Problem("Quantity can't be below 1 meal!");
+            }
             _context.OrderItems.Add(orderItem);
             await _context.SaveChangesAsync();
 
