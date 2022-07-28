@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 string MyAllowSpecificOrigins = "";
 //to handle Reference Loop 
 builder.Services.AddControllers().AddNewtonsoftJson(x=>x.SerializerSettings.ReferenceLoopHandling=Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-builder.Services.AddDbContext<RestaurantDeliveryContext>(x => x.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("ResDelCon")));
+builder.Services.AddDbContext<RestaurantDeliveryContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ResDelCon")));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>

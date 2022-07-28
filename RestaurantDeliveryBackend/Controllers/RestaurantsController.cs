@@ -28,7 +28,7 @@ namespace RestaurantDeliveryBackend.Controllers
           {
               return NotFound();
           }
-            return await _context.Restaurants.ToListAsync();
+            return await _context.Restaurants.Include(x=>x.Meals).ToListAsync();
         }
 
         // GET: api/Restaurants/5
@@ -39,7 +39,7 @@ namespace RestaurantDeliveryBackend.Controllers
           {
               return NotFound();
           }
-            var restaurant = await _context.Restaurants.FindAsync(id);
+            var restaurant =  _context.Restaurants.Include(x=>x.Meals).FirstOrDefault(x=>x.RestId==id);
 
             if (restaurant == null)
             {
