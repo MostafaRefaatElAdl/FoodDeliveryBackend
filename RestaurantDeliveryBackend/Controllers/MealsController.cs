@@ -50,7 +50,6 @@ namespace RestaurantDeliveryBackend.Controllers
         }
 
         // PUT: api/Meals/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMeal(int id, Meal meal)
         {
@@ -81,7 +80,6 @@ namespace RestaurantDeliveryBackend.Controllers
         }
 
         // POST: api/Meals
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Meal>> PostMeal(Meal meal)
         {
